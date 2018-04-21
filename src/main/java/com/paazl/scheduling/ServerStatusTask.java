@@ -1,8 +1,7 @@
 package com.paazl.scheduling;
 
 import com.paazl.gui.GuiInterface;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.paazl.rest.ShepherdClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -22,15 +21,17 @@ public class ServerStatusTask {
     private GuiInterface guiInterface;
 
     @Autowired
+    private ShepherdClient shepherdClient;
+
+    @Autowired
     public ServerStatusTask(
             GuiInterface guiInterface) {
 
         this.guiInterface = guiInterface;
     }
 
-    @Scheduled(cron="${scheduling.server_status.cron}")
+    @Scheduled(cron = "${scheduling.server_status.cron}")
     public void getServerStatus() {
-        guiInterface.addServerFeedback("Server status... " + new Date().toString());
+        guiInterface.addServerFeedback(shepherdClient.getServerStatus());
     }
-
 }
