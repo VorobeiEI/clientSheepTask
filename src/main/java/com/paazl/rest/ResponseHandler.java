@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+//class with handling responses from server
 @Component
 public class ResponseHandler {
     private static final CloseableHttpClient client = HttpClients.createDefault();

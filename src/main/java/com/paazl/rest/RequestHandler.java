@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+//class with GET requests for server resources
 @Component
 public class RequestHandler {
 
